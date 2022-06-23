@@ -29,13 +29,13 @@ list($id, $categories) = treatEntries();
 ?>
 
 <?php
-    $isTrending = isset($products[$id]['is_trending']) && $products[$id]['is_trending'] == true ? "<span class='badge badge-danger'>Trending 🔥</span>" : "";
+    $isTrending = isset($productsList[$id]['is_trending']) && $productsList[$id]['is_trending'] == true ? "<span class='badge badge-danger'>Trending 🔥</span>" : "";
     echo "<div class='container'>";
         echo "<div class='row'>";
             echo "<div class='col m-3'>";
-                echo "<h2>{$products[$id]['name']} {$isTrending}</h2>";
-                echo "<p>{$products[$id]['description']}</p>";
-                echo "<img src='assets/img/{$products[$id]['image']}' alt='' width=350 height=350>";
+                echo "<h2>{$productsList[$id]['name']} {$isTrending}</h2>";
+                echo "<p>{$productsList[$id]['description']}</p>";
+                echo "<img src='assets/img/{$productsList[$id]['image']}' alt='' width=350 height=350>";
             echo "</div>";
         echo "</div>";
 
