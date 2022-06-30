@@ -1,17 +1,17 @@
 <?php
-include_once "./includes/_dados.php";
-include_once "./includes/_head.php";
-include_once "./includes/_header.php";
+include_once "./includes/view/_dados.php";
+include_once "./includes/view/_head.php";
+include_once "./includes/view/_header.php";
 
 function treatEntries() {
     if (!isset($_GET['id'])) {
         print("Id is mandatory");
-        die();
+        exit();
     }
 
     if (!isset($_GET['categories'])) {
         print("Categories is mandatory");
-        die();
+        exit();
     }
     
     $id = $_GET['id'];
@@ -19,7 +19,12 @@ function treatEntries() {
 
     if (!is_numeric($id) || is_numeric($categories)) {
         print("Bad Request");
-        die();
+        exit();
+    }
+
+    if (!isset($GLOBALS["productsList"][$id])) {
+        print("Cannot find a product with id $id.");
+        exit();
     }
 
     return [ $id, $categories ];
@@ -46,4 +51,4 @@ list($id, $categories) = treatEntries();
     echo "</div>";
 ?>
     
-<?php include_once "./includes/_footer.php"; ?>
+<?php include_once "./includes/view/_footer.php"; ?>

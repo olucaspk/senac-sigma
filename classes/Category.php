@@ -1,5 +1,5 @@
 <?php
-include_once "./includes/_dados.php";
+include_once "./includes/view/_dados.php";
 
 class Category {
     public $id;

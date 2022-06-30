@@ -1,11 +1,16 @@
 <?php
 
-require_once "./includes/_database.php";
+require_once "./classes/Database.php";
+// Database
+$DatabaseClass = new Database();
 
+// Variables
 $productsList = [];
 $productsFirstPage = [];
 $productsWithoutCategory = [];
-$productsQuery = query($pdo, "SELECT * FROM products", []);
+
+
+$productsQuery = $DatabaseClass->query("SELECT * FROM products", []);
 
 foreach ($productsQuery as $_ => $productInfos) {
     $productsList[$productInfos['id']] = $productInfos;
