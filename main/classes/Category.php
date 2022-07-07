@@ -4,13 +4,12 @@ include_once "./includes/view/_dados.php";
 class Category {
     public $id;
     public $name;
-    public $categories;
     
     public function __construct($categoryId) {
-        $this->categories = $GLOBALS['categories'];
+        $this->categories = $GLOBALS["categoriesList"];
 
         $this->id = $categoryId;
-        $this->name = $this->categories[$this->id]['name'];
+        $this->name = $this->categories[$this->id]["name"];
     }
 
     public function getId() {
@@ -19,9 +18,5 @@ class Category {
 
     public function getName() {
         return $this->name;
-    }
-
-    public function isNew() {
-        return $this->id == "novos" ? true : false;
     }
 }

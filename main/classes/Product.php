@@ -17,7 +17,8 @@ class Product {
         $this->name = $this->productsList[$this->id]["name"];
         $this->price = $this->productsList[$this->id]["price"];
         $this->description = $this->productsList[$this->id]["description"];
-        $this->categories = $this->productsList[$this->id]["categories"];
+        $this->tags = $this->productsList[$this->id]["tags"];
+        $this->categoryId = $this->productsList[$this->id]["category_id"];
         $this->image = $this->productsList[$this->id]["image"];
         $this->isTrending = $this->productsList[$this->id]["is_trending"];
         $this->createdAt = $this->productsList[$this->id]["created_at"];
@@ -43,12 +44,16 @@ class Product {
         return $this->image;
     }
 
-    public function getCategories() {
+    public function getTags() {
         return json_decode($this->categories);
     }
 
     public function getCreationDate() {
         return $this->createdAt;
+    }
+
+    public function getCategoryId() {
+        return $this->categoryId;
     }
 
     public function formatArrayToString($array) {

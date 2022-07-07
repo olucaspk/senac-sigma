@@ -1,47 +1,66 @@
 <?php
 
-require_once "./classes/Database.php";
 // Database
+require_once "./classes/Database.php";
 $DatabaseClass = new Database();
 
-// Variables
+// Cache Variables
 $productsList = [];
-$productsFirstPage = [];
-$productsWithoutCategory = [];
+$categoriesList = [];
 
+// Utils
+function tableContains($table, $expectedValue) {
+    foreach ($table as $v) {
+        if ($v == $expectedValue) return true;
+    }
 
-$productsQuery = $DatabaseClass->query("SELECT * FROM products", []);
+    return false;
+}
 
-foreach ($productsQuery as $_ => $productInfos) {
-    $productsList[$productInfos['id']] = $productInfos;
+function loadProducts() {
+    $productsQuery = $GLOBALS["DatabaseClass"]->query("SELECT `id`, `name`, `price`, `description`, `tags`, `category_id`, `image`, `is_trending`, `created_at` FROM `products` WHERE `is_active` = true", []);
+    foreach ($productsQuery as $_ => $productInfos) {
+        $productInfos["tags"] = json_decode($productInfos["tags"]);
 
-    $productCategories = json_decode($productInfos['categories']);
-    if (isset($productCategories) && count($productCategories) >= 1) {
-        foreach ($productCategories as $_ => $v) {
-            if (!isset($productsFirstPage[$v])) {
-                $productsFirstPage[$v] = [];
-            }
-
-            array_push($productsFirstPage[$v], $productInfos['id']);
-        }
-    } else {
-        array_push($productsWithoutCategory, $productInfos['id']);
+        $GLOBALS["productsList"][$productInfos["id"]] = $productInfos;
     }
 }
 
-$categories = [
-    "novos" => [
-        "name" => "Novidades imperdíveis"
-    ],
-    "animais" => [
-        "name" => "Animais notáveis"
-    ],
-    "humanos" => [
-        "name" => "Humanos belissímos"
-    ],
-    "petras" => [
-        "name" => "Gym"
-    ]
-];
+function loadCategories() {
+    $categoriesQuery = $GLOBALS["DatabaseClass"]->query("SELECT `id`, `name` FROM `categories` WHERE `is_active` = true", []);
+    foreach ($categoriesQuery as $categoriesInfo) {
+        $GLOBALS["categoriesList"][$categoriesInfo["id"]] = $categoriesInfo;    
+    }
+}
 
-?>
+function getAllProducts() {
+    $allProducts = [];
+    
+    foreach ($GLOBALS["productsList"] as $value) {
+        $category = new Category($value["category_id"]);
+        $categoryName = $category->getName();
+
+        if (!isset($allProducts[$categoryName])) {
+            $allProducts[$categoryName] = [];
+        }
+
+        $allProducts[$categoryName][$value["id"]] = $value;
+    }
+
+    return $allProducts;
+}
+
+function getProductsToFirstPage() {
+    $firstPageProducts = [];
+    
+    foreach ($GLOBALS["productsList"] as $value) {
+        if (tableContains($GLOBALS["productsList"][$value["id"]]["tags"], "new")) {
+            $firstPageProducts[$value["id"]] = $value;
+        }
+    }
+
+    return $firstPageProducts;
+}
+
+loadCategories();
+loadProducts();
