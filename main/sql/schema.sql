@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela sigma.categories: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela sigma.categories: ~4 rows (aproximadamente)
 INSERT INTO `categories` (`id`, `name`, `is_active`) VALUES
 	(1, 'Gakko Monkez', 1),
 	(2, 'Chemistry Club', 1),
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_products_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Copiando dados para a tabela sigma.products: ~10 rows (aproximadamente)
+-- Copiando dados para a tabela sigma.products: ~24 rows (aproximadamente)
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `tags`, `category_id`, `image`, `is_trending`, `is_active`, `created_at`) VALUES
 	(1, 'Gakko Monkez', 0.35, 'Lorem Ipsum', '[ "new" ]', 1, 'https://lh3.googleusercontent.com/WUowdVjCfEAbjkhf0Ck-DYID3gAC-4HUK0ulam45TuAzgUaDujn5FMcNwlAZK0YyrBZEZ89LmHVGeuI2w7X807rLLzSbZFTdk0-bog=w417', 0, 1, '2022-06-23 21:24:39'),
 	(2, 'Gakko Monkez', 0.36, 'Lorem Ipsum', '[]', 1, 'https://lh3.googleusercontent.com/qDQCKNrn6C7zNhWemn534XKuyyYqFMnOwPhCpBqojplOHpyf0_EhvQIk7Efn_J5nhQYw_LhjtKupzy2rg8q7_7diMR5uTlXKz2xReAA=w417', 1, 1, '2022-06-23 21:24:39'),
@@ -77,6 +77,21 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `tags`, `category_
 	(22, 'Super Influencers', 500, 'Lorem Ipsum', '[]', 4, 'https://lh3.googleusercontent.com/rYF12LzHLaj76Dq6k4AjBGOHszx9cLk6Y8qHeeUi0nEjTjKlqx0T-jgN7OrYeBwApRrFs76Cl9qJEADXPt2PQ5gOA8wlkfJLUJFy-fg=w417', 0, 1, '2022-07-07 19:18:11'),
 	(23, 'Super Influencers', 500, 'Lorem Ipsum', '[]', 4, 'https://lh3.googleusercontent.com/HvYE195ddilNPNLsrhhis-JGspJwbieRC3q7GwtN8bljvs3ch7UR6NUUJ9CfmGTCA1H7YYApddfIqBl2w9LAlaT0OoN7NxI9afEnNKk=w417', 0, 1, '2022-07-07 19:18:16'),
 	(24, 'Super Influencers', 500, 'Lorem Ipsum', '[]', 4, 'https://lh3.googleusercontent.com/Je0wp4XtfvEKnW3bk2ksVmDXuD_ffRnxkVa7n_KkmIi6cq-_QGOhWOpkKiXCTaM2Nn5kTWtMp2bszZPLIYj0y7OqWjj3QCh7_uSgeKs=w417', 0, 1, '2022-07-07 19:18:21');
+
+-- Copiando estrutura para tabela sigma.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela sigma.users: ~0 rows (aproximadamente)
+INSERT INTO `users` (`id`, `username`, `password`, `is_admin`, `is_active`, `created_at`) VALUES
+	(1, 'admin', '$2y$10$/95q.QJ6RYiWMhft8uQRB.nboBRno6XVM.jhwhqtPY/uXEtiZEsm6', 1, 1, '2022-07-07 20:41:47');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
