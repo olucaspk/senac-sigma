@@ -4,7 +4,7 @@ include_once "./includes/view/_head.php";
 include_once "./includes/view/_header.php";
 
 
-function treatEntries() {
+function sanitizeInputs() {
     // Enquanto não puder usar o exit, vamos de gambiarra;
     // TODO: FIX
     $expectedEntries = [ "name", "lastname", "phone", "email", "message" ];
@@ -23,7 +23,7 @@ function treatEntries() {
     return [ $isAllEntriesPassed, $entriesList ];
 }
 
-list($entriesValidated, $entriesData) = treatEntries();
+list($entriesValidated, $entriesData) = sanitizeInputs();
 if ($entriesValidated === 1) {
     list($name, $lastname, $phone, $email, $message) = $entriesData;
     print($name."<br>");

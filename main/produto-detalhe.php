@@ -5,7 +5,7 @@ include_once "./includes/view/_header.php";
 
 include_once "./classes/Product.php";
 
-function treatEntries() {
+function sanitizeInputs() {
     if (!isset($_GET['id'])) {
         print("Id is mandatory");
         exit();
@@ -26,7 +26,7 @@ function treatEntries() {
     return $id;
 }
 
-$id = treatEntries();
+$id = sanitizeInputs();
 ?>
 
 <?php

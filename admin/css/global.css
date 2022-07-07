@@ -1,0 +1,110 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.login-button {
+    background-color: #4263EB; 
+    color: white;
+
+    transition: 0.1s background;
+}
+
+.login-button:hover {
+    background-color: #2445CD;
+    color: white;
+}
+
+body {
+    background: #fafafa;
+}
+
+/* Index PHP */
+
+.user-infos {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2rem 2rem 0 0;
+}
+
+.user {
+    padding: .785rem;
+    border: 0;
+
+    background: #4263EB;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: 0.1s background;
+
+    margin-right: 1rem;
+}
+
+.user-infos input {
+    padding: .785rem;
+    border: 0;
+
+    background: #fafafa;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: 0.1s background;
+}
+
+.user-icon {
+    margin-right: 0.25rem;
+}
+
+/* Main Categorias */
+
+main > #categories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 1rem 0 1rem;
+
+    margin-top: 5rem;
+}
+
+main > #categories-header > button {
+    padding: .50rem;
+    border: 0;
+
+    background: #4263EB;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: 0.1s background;
+
+    margin-right: 1rem;
+}
+
+main > #categories-header > button:hover {
+    background: #2445CD;
+}
+
+.table {
+    margin: 1rem;
+    max-width: 99%;
+}
+
+.buttons button {
+    border: 0;
+}
+
+.buttons .edit-button {
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    background: #FFBC1F;
+    border-radius: 4px;
+    color: white;
+    margin-right: 0.875rem;
+}
+
+.buttons .delete-button {
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    background: #FF6262;
+    border-radius: 4px;
+    color: white;
+}
