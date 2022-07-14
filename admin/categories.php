@@ -48,10 +48,10 @@ if (!isset($_SESSION["LOGIN"]) || empty($_SESSION["LOGIN"])) {
       </thead>
       <tbody>
         <?php
-            $categoriesQuery = $databaseClass->query("SELECT * FROM `categories`");
+            $categoriesQuery = $databaseClass->Query("SELECT * FROM `categories`");
             foreach ($categoriesQuery as $key => $categoriesInfos) {
                 $categoryId = $categoriesInfos["id"];
-                $productsInCategory = $databaseClass->query("SELECT COUNT(id) AS `amount` FROM `products` WHERE `category_id` = '{$categoryId}'");
+                $productsInCategory = $databaseClass->Query("SELECT COUNT(id) AS `amount` FROM `products` WHERE `category_id` = '{$categoryId}'");
                 $isActive = $categoriesInfos['is_active'] == 1 ? "Ativa" : "Inativa";
 
                 echo "<tr>";

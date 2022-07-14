@@ -49,7 +49,7 @@ if (!isset($_SESSION["LOGIN"]) || empty($_SESSION["LOGIN"])) {
       </thead>
       <tbody>
         <?php
-            $usersQuery = $databaseClass->query("SELECT `id`, `username`, `is_admin`, `is_active`, `created_at`  FROM `users`");
+            $usersQuery = $databaseClass->Query("SELECT `id`, `username`, `is_admin`, `is_active`, `created_at`  FROM `users`");
             foreach ($usersQuery as $key => $userInfos) {
                 $userId = $userInfos["id"];
 

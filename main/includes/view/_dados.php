@@ -18,7 +18,7 @@ function tableContains($table, $expectedValue) {
 }
 
 function loadProducts() {
-    $productsQuery = $GLOBALS["DatabaseClass"]->query("SELECT `id`, `name`, `price`, `description`, `tags`, `category_id`, `image`, `is_trending`, `created_at` FROM `products` WHERE `is_active` = true", []);
+    $productsQuery = $GLOBALS["DatabaseClass"]->Query("SELECT `id`, `name`, `price`, `description`, `tags`, `category_id`, `image`, `is_trending`, `created_at` FROM `products` WHERE `is_active` = true", []);
     foreach ($productsQuery as $_ => $productInfos) {
         $productInfos["tags"] = json_decode($productInfos["tags"]);
 
@@ -27,7 +27,7 @@ function loadProducts() {
 }
 
 function loadCategories() {
-    $categoriesQuery = $GLOBALS["DatabaseClass"]->query("SELECT `id`, `name` FROM `categories` WHERE `is_active` = true", []);
+    $categoriesQuery = $GLOBALS["DatabaseClass"]->Query("SELECT `id`, `name` FROM `categories` WHERE `is_active` = true", []);
     foreach ($categoriesQuery as $categoriesInfo) {
         $GLOBALS["categoriesList"][$categoriesInfo["id"]] = $categoriesInfo;    
     }

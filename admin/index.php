@@ -15,7 +15,7 @@ if (!isset($_SESSION["LOGIN"]) || empty($_SESSION["LOGIN"])) {
 $username = $_SESSION["LOGIN"]["username"];
 
 $metrics = [];
-$countQuery = $databaseClass->query("SELECT 'categories' AS table_name, COUNT(*) AS `amount` FROM categories UNION SELECT 'products' AS table_name, COUNT(*) FROM products UNION SELECT 'users' AS table_name, COUNT(*) UNION SELECT 'sales' AS table_name, COUNT(*)  FROM users", []);
+$countQuery = $databaseClass->Query("SELECT 'categories' AS table_name, COUNT(*) AS `amount` FROM categories UNION SELECT 'products' AS table_name, COUNT(*) FROM products UNION SELECT 'users' AS table_name, COUNT(*) UNION SELECT 'sales' AS table_name, COUNT(*)  FROM users", []);
 
 foreach ($countQuery as $value) {
     $metrics[$value["table_name"]] = $value["amount"];

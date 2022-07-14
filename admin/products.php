@@ -52,11 +52,11 @@ if (!isset($_SESSION["LOGIN"]) || empty($_SESSION["LOGIN"])) {
       </thead>
       <tbody>
         <?php
-            $productsQuery = $databaseClass->query("SELECT * FROM `products`");
+            $productsQuery = $databaseClass->Query("SELECT * FROM `products`");
             foreach ($productsQuery as $key => $productInfos) {
                 $productId = $productInfos["id"];
                 $productImage = $productInfos['image'];
-                $categoryName = $databaseClass->query("SELECT `name` FROM `categories` WHERE `id` = '{$productInfos['category_id']}'", []);
+                $categoryName = $databaseClass->Query("SELECT `name` FROM `categories` WHERE `id` = '{$productInfos['category_id']}'", []);
                 $categoryName = $categoryName[0]["name"];
 
                 $isTrending = $productInfos['is_trending'] == 1 ? "Sim" : "Não";

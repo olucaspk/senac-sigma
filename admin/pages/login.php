@@ -25,7 +25,7 @@ function handleLogin($username, $password) {
   $username = filter_var($username, FILTER_SANITIZE_STRING);
   $password = filter_var($password, FILTER_SANITIZE_STRING);
 
-  $userQuery = $GLOBALS["databaseClass"]->query("SELECT * FROM users WHERE `username` = '{$username}'", []);
+  $userQuery = $GLOBALS["databaseClass"]->Query("SELECT * FROM users WHERE `username` = '{$username}'", []);
   if (!empty($userQuery)) {
     if (password_verify($password, $userQuery[0]["password"]) && $userQuery[0]["is_admin"]) {
       $_SESSION["LOGIN"] = [
